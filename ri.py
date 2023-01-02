@@ -9,6 +9,17 @@ from dotenv import load_dotenv
 from collections import OrderedDict
 from operator import itemgetter
 
+# TODO 
+DELIMITER_REGEX = ''
+
+load_dotenv()
+reddit = praw.Reddit(
+    client_id=os.environ.get("CLIENT_ID"),
+    client_secret=os.environ.get("CLIENT_SECRET"),
+    user_agent="RedditorInspector"
+)
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Get insights in posts made by a redditor")
     parser.add_argument(
@@ -21,18 +32,6 @@ def parse_args():
     )
     return parser.parse_args()
 
-# Go to https://www.reddit.com/prefs/apps
-# Fill in a random name and http://127.0.0.1:1337
-# Paste vars into .env
-load_dotenv()
-reddit = praw.Reddit(
-    client_id=os.environ.get("CLIENT_ID"),
-    client_secret=os.environ.get("CLIENT_SECRET"),
-    user_agent="RedditorInspector"
-)
-
-# TODO 
-DELIMITER_REGEX = ''
 
 def get_posts(username: str):
   words = {}
